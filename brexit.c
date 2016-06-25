@@ -84,10 +84,7 @@ int main() {
     int m;
     for (m = 0; m < R; m++) {
         /* simulate o_unsure */
-        for (i = 0; i < N; i++) {
-            if (C()) o_unsure_m[i] = 1;
-            else o_unsure_m[i] = 0;
-        }
+        for (i = 0; i < N; i++) o_unsure_m[i] = C();
 
         /* calculate p values */
         int sum_o_unsure_m = sum(o_unsure_m, N);
@@ -104,6 +101,11 @@ int main() {
     /* print results */
     printf("p value for leave: %f\n", p_leave / N);
     printf("p value for remain: %f\n", p_remain / N);
+
+    /* free rsources */
+    free(o_leave);
+    free(o_remain);
+    free(o_unsure_m);
 
     return 0;
 }
